@@ -62,10 +62,14 @@ on:
         required: true
         default: true
         type: boolean
+      one:
+        description: 'ONE'
+        default: true
+        type: choice
 
 jobs:
   test_schedule:
-    runs-on: ${{ github.event.inputs.runner }}
+    runs-on: windows-latest
     steps:
       - name: Testing name
         run: echo "This is a test created by TONY"
