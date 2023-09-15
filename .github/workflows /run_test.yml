@@ -1,0 +1,57 @@
+name: Run Test
+
+on:
+  push:
+    branches:
+      - *
+  schedule:
+    - cron: '*/5 * * * *'
+    
+  workflow_dispatch:
+    inputs:
+      kreversion:
+        description: 'KRE Version'
+        required: true
+        default: 8.6.6
+        type: choice
+        options:
+          - 8.6.8
+          - 8.6.6
+          - 8.6.5
+      testsuite:
+        description: 'Testsuite'
+        required: true
+        default: Test Suites/Fast Test by Tony/Admin Profile
+        type: choice
+        options:
+          - Test Suites/Fast Test by Tony/Admin Profile
+          - APIs Test
+          - Fast Test
+          - Story Test
+          - Feature Test
+          - P1 Test
+          - P2 Test
+          - P3 Test
+      browser:
+        description: 'Browser'
+        required: true
+        default: Chrome
+        type: choice
+        options:
+          - Chrome
+          - Firefox
+          - IE
+          - Safari
+          - Edge
+          - Edge Chromium
+      slacknotify:
+        description: 'Send slack notification'
+        required: true
+        default: true
+
+  jobs:
+  test_schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testing name
+        run: echo "This is a test created by TONY"
