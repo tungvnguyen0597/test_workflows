@@ -3,7 +3,7 @@ name: Run Test
 on:
   push:
     branches:
-      - *
+      - '*'
   schedule:
     - cron: '*/5 * * * *'
     
