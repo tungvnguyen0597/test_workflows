@@ -65,7 +65,7 @@ on:
 
 jobs:
   test_schedule:
-    runs-on: ubuntu-latest
+    runs-on: ${{ github.event.inputs.runner }}
     steps:
       - name: Testing name
         run: echo "This is a test created by TONY"
