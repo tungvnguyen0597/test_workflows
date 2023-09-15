@@ -32,6 +32,19 @@ on:
           - P1 Test
           - P2 Test
           - P3 Test
+      runner:
+        description: 'Runner'
+        required: true
+        default: windows-latest
+        type: choice
+        options:
+          - windows-latest
+          - windows-2019
+          - macos-13
+          - macos-latest
+          - macos-11
+          - ubuntu-latest
+          - ubuntu-20.04
       browser:
         description: 'Browser'
         required: true
