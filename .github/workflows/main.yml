@@ -68,5 +68,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Runner: ${{ github.event.inputs.runner }}"
-        echo "KRE: ${{ github.event.inputs.kreversion }}" 
+        echo "Runner: ${{ inputs.runner }}"
+        echo "KRE: ${{ inputs.kreversion }}" 
