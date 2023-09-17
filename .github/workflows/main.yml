@@ -10,8 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       env:
-        description: 'Environment'
-        default: Staging
+        description: 'Environment: Staging'
       kreversion:
         description: 'KRE Version'
         required: true
@@ -24,11 +23,11 @@ on:
       testsuite:
         description: 'Testsuite'
         required: true
-        default: Fast Test 1
+        default: 'Fast Test 1'
         type: choice
         options:
-          - Fast Test 2
-          - Fast Test 3
+          - 'Fast Test 2'
+          - 'Fast Test 3'
       runner:
         description: 'Runner'
         required: true
