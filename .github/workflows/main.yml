@@ -64,7 +64,7 @@ jobs:
     if: ${{ github.event.inputs.browser == '' && github.event_name == 'push' }}
     runs-on: windows-latest
     steps:
-        run: echo "This is a test created by TONY"
+    - run: echo "This is a test created by TONY"
   printInputs:
     name: Execute test by manual trigger
     if: ${{ github.event.inputs.browser !='' }}
