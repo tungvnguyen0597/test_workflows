@@ -21,12 +21,12 @@ on:
       testsuite:
         description: 'Test Suite'
         required: true
-        default: Fast Test 1
+        default: Fast Test Demo
         type: choice
         options:
+          - Fast Test Demo
           - Fast Test 1
           - Fast Test 2
-          - Fast Test 3
       runner:
         description: 'Runner'
         required: true
