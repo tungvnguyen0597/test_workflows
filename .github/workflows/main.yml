@@ -9,9 +9,6 @@ on:
     
   workflow_dispatch:
     inputs:
-      env:
-        description: 'Environment: Staging'
-        type: environment
       kreversion:
         description: 'KRE Version'
         required: true
@@ -21,15 +18,15 @@ on:
           - 8.6.8
           - 8.6.6
           - 8.6.5
-          
       testsuite:
-        description: 'Testsuite'
+        description: 'Test Suite'
         required: true
-        default: 'Fast Test 1'
+        default: Fast Test
         type: choice
         options:
-          - 'Fast Test 2'
-          - 'Fast Test 3'
+          - Fast Test 1
+          - Fast Test 2
+          - Fast Test 3
 
       runner:
         description: 'Runner'
