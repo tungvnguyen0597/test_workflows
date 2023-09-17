@@ -75,7 +75,7 @@ jobs:
     name: Send note
     if: ${{ always() }}
     needs: [auto, manual]
-    runs-on: ${{ github.event.inputs.runner }}
+    runs-on: windows-latest
     steps:
     - run: echo "sendnote test"
      
