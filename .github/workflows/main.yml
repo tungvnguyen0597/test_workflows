@@ -60,7 +60,13 @@ on:
 
 jobs:
   test_schedule:
-    runs-on: ${{ github.inputs.runner }}
+    runs-on: windows-latest
     steps:
       - name: Testing name
         run: echo "This is a test created by TONY"
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Log level: ${{ github.event.inputs.runner }}"
+        echo "Tags: ${{ github.event.inputs.kreversion }}" 
