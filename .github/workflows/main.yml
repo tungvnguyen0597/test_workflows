@@ -65,13 +65,11 @@ jobs:
     runs-on: windows-latest
     steps:
     - run: echo "This is a test created by TONY"
-    - run: echo ${{ github.event.inputs.runner }}
   manual:
     name: Execute test by manual trigger
     if: ${{ github.event.inputs.browser !='' }}
     runs-on: ${{ github.event.inputs.runner }}
     steps:
-    - run: echo "This is a test created by TONY"
     - run: echo ${{ github.event.inputs.runner }}
   sendnote:
     name: Send note
