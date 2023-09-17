@@ -12,7 +12,6 @@ on:
       env:
         description: 'Environment'
         default: Staging
-        type: choice
       kreversion:
         description: 'KRE Version'
         required: true
