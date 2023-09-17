@@ -9,6 +9,10 @@ on:
     
   workflow_dispatch:
     inputs:
+      env:
+        description: 'Environment'
+        default: Staging
+        type: choice
       kreversion:
         description: 'KRE Version'
         required: true
@@ -21,17 +25,11 @@ on:
       testsuite:
         description: 'Testsuite'
         required: true
-        default: Test Suites/Fast Test by Tony/Admin Profile
+        default: Fast Test 1
         type: choice
         options:
-          - Test Suites/Fast Test by Tony/Admin Profile
-          - APIs Test
-          - Fast Test
-          - Story Test
-          - Feature Test
-          - P1 Test
-          - P2 Test
-          - P3 Test
+          - Fast Test 2
+          - Fast Test 3
       runner:
         description: 'Runner'
         required: true
@@ -62,10 +60,6 @@ on:
         required: true
         default: true
         type: boolean
-      one:
-        description: 'ONE'
-        default: true
-        type: choice
 
 jobs:
   test_schedule:
