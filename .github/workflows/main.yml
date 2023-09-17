@@ -60,11 +60,13 @@ on:
 
 jobs:
   test_schedule:
+    name: Execute test when push
+    if: ${{ github.event.inputs.browser == '' && github.event_name == 'push' }}
     runs-on: windows-latest
     steps:
-      - name: Testing name
         run: echo "This is a test created by TONY"
   printInputs:
+    name: Execute test by manual trigger
     if: ${{ github.event.inputs.browser !='' }}
     runs-on: ${{ github.event.inputs.runner }}
     steps:
