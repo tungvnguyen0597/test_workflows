@@ -59,17 +59,18 @@ on:
         type: boolean
 
 jobs:
-  test_schedule:
+  auto:
     name: Execute test when push
     if: ${{ github.event.inputs.browser == '' && github.event_name == 'push' }}
     runs-on: windows-latest
     steps:
     - run: echo "This is a test created by TONY"
-  printInputs:
+    - run: echo ${{ github.event.inputs.runner }}
+  manual:
     name: Execute test by manual trigger
     if: ${{ github.event.inputs.browser !='' }}
     runs-on: ${{ github.event.inputs.runner }}
     steps:
-    - run: |
-        echo "Runner: ${{ github.event.inputs.runner }}"
-        echo "KRE: ${{ github.event.inputs.kreversion }}" 
+    - run: echo "This is a test created by TONY"
+    - run: echo ${{ github.event.inputs.runner }}
+     
