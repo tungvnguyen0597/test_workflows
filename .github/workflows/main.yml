@@ -73,4 +73,11 @@ jobs:
     steps:
     - run: echo "This is a test created by TONY"
     - run: echo ${{ github.event.inputs.runner }}
+  sendnote:
+    name: Send note
+    if: ${{ always() }}
+    needs: [auto, manual]
+    runs-on: ${{ github.event.inputs.runner }}
+    steps:
+    - run: echo "sendnote test"
      
