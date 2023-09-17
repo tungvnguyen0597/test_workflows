@@ -21,13 +21,12 @@ on:
       testsuite:
         description: 'Test Suite'
         required: true
-        default: Fast Test
+        default: Fast Test 1
         type: choice
         options:
           - Fast Test 1
           - Fast Test 2
           - Fast Test 3
-
       runner:
         description: 'Runner'
         required: true
@@ -61,7 +60,7 @@ on:
 
 jobs:
   test_schedule:
-    runs-on: windows-latest
+    runs-on: ${{ github.inputs.runner }}
     steps:
       - name: Testing name
         run: echo "This is a test created by TONY"
