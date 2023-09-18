@@ -68,7 +68,7 @@ jobs:
     runs-on: windows-latest
     
     steps:
-      run: echo ${${{ matrix.os-runner }}:7}
+      - run: echo ${${{ matrix.os-runner }}:7}
   manual:
     name: Execute test by manual trigger
     if: ${{ github.event.inputs.browser !='' }}
