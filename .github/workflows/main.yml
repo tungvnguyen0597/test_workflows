@@ -72,11 +72,10 @@ jobs:
       id: split
       run: echo "::set-output name=fragment::${${{ matrix.os-runner }}##*/}"
     - name: Test variable
-        run: |
-          echo ${{ steps.split.outputs.fragment }}
+      run: echo ${{ steps.split.outputs.fragment }}
     - run: |
         echo fragment::${${{ matrix.os-runner }}##*/}
-        run: echo "::set-output name=fragment::${BRANCH##*/}"
+        echo "::set-output name=fragment::${${{ matrix.os-runner }}##*/}"
   manual:
     name: Execute test by manual trigger
     if: ${{ github.event.inputs.browser !='' }}
