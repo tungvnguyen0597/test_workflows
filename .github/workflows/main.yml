@@ -62,20 +62,13 @@ jobs:
   auto:
     strategy:
       matrix:
-        os-runner: ['1/2/3/Chrome', '4/52/63/Firefox', '1w//Safari']
-    name: Test with ${{ matrix.os-runner }}
-    if: ${{ github.event.inputs.browser == '' && github.event_name == 'push' }}
-    runs-on: windows-latest
+        os-runner: ['windows-latest', 'macos-latest2323243dwsdsdxsdx', 'macos-latest']
+    name: Test run with ${{ matrix.os-runner }}
+    runs-on: ${{ matrix.os-runner }}
     
     steps:
-      - name: Split branch name
-        env:
-          RUNNAME: ${{ matrix.os-runner }}
-        id: split
-        run: echo "::set-output name=fragment::${RUNNAME##*/}"
-      - name: Test variable
-        run: |
-          echo ${{ steps.split.outputs.fragment }}
+      - run: |
+          echo ${{ matrix.os-runner }}
         
   manual:
     name: Execute test by manual trigger
