@@ -68,14 +68,7 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - name: Split branch name
-      id: split
-      run: echo "::set-output name=fragment::${${{ matrix.os-runner }}##*/}"
-    - name: Test variable
-      run: echo ${{ steps.split.outputs.fragment }}
-    - run: |
-        echo fragment::${${{ matrix.os-runner }}##*/}
-        echo "::set-output name=fragment::${${{ matrix.os-runner }}##*/}"
+      run: echo ${${{ matrix.os-runner }}:7}
   manual:
     name: Execute test by manual trigger
     if: ${{ github.event.inputs.browser !='' }}
