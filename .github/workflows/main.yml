@@ -63,7 +63,7 @@ jobs:
     strategy:
       matrix:
         os-runner: ['1/2/3/Chrome', '4/52/63/Firefox', '1w//Safari']
-    name: Test with ${${{ matrix.os-runner }}:4}
+    name: Test with ${{ matrix.os-runner }}##*/
     if: ${{ github.event.inputs.browser == '' && github.event_name == 'push' }}
     runs-on: windows-latest
     
