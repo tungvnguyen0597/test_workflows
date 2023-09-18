@@ -60,12 +60,13 @@ on:
 
 jobs:
   auto:
-    name: Execute test when push
-    if: ${{ github.event.inputs.browser == '' && github.event_name == 'push' }}
-    runs-on: windows-latest
     strategy:
       matrix:
         os-runner: ['Chrome', 'Firefox', 'Safari']
+    name: Execute with ${{ matrix.os-runner }}
+    if: ${{ github.event.inputs.browser == '' && github.event_name == 'push' }}
+    runs-on: windows-latest
+    
     steps:
     - run: |
         echo "This is a test created by TONY"
