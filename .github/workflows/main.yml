@@ -63,8 +63,13 @@ jobs:
     name: Execute test when push
     if: ${{ github.event.inputs.browser == '' && github.event_name == 'push' }}
     runs-on: windows-latest
+    strategy:
+      matrix:
+        os-runner: ['Chrome', 'Firefox', 'Safari']
     steps:
     - run: echo "This is a test created by TONY"
+    - name: Parallel run
+        run: echo ${{ matrix.os-runner }}
   manual:
     name: Execute test by manual trigger
     if: ${{ github.event.inputs.browser !='' }}
