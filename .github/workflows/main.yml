@@ -67,9 +67,9 @@ jobs:
       matrix:
         os-runner: ['Chrome', 'Firefox', 'Safari']
     steps:
-    - run: echo "This is a test created by TONY"
-    - name: Parallel run
-        run: echo ${{ matrix.os-runner }}
+    - run: |
+        echo "This is a test created by TONY"
+        echo ${{ matrix.os-runner }}
   manual:
     name: Execute test by manual trigger
     if: ${{ github.event.inputs.browser !='' }}
