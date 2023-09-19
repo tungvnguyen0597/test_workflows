@@ -1,9 +1,11 @@
-name: Run Test
+name: Run Regression Test by Manual trigger
 
 on:
+  pull_request:
+    branches: ["main"]
   push:
     branches:
-      - '*'
+      - 'main'
   schedule:
     - cron: '0 0 * * *'
     
@@ -18,15 +20,23 @@ on:
           - 8.6.8
           - 8.6.6
           - 8.6.5
+      profile:
+        description: 'Execution Profile'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+          - qa
       testsuite:
         description: 'Test Suite'
         required: true
-        default: Fast Test Demo
+        default: Staging Regression Test - Admin
         type: choice
         options:
-          - Fast Test Demo
-          - Fast Test 1
-          - Fast Test 2
+          - Staging Regression Test - Admin
+          - Production Regression Test - Admin
       runner:
         description: 'Runner'
         required: true
@@ -59,28 +69,19 @@ on:
         type: boolean
 
 jobs:
-  auto:
-    strategy:
-      matrix:
-        os-runner: ['windows-latest', 'macos-latest2323243dwsdsdxsdx', 'macos-latest']
-    name: Test run with ${{ matrix.os-runner }}
-    runs-on: ${{ matrix.os-runner }}
-    
-    steps:
-      - run: |
-          echo ${{ matrix.os-runner }}
-        
   manual:
     name: Execute test by manual trigger
     if: ${{ github.event.inputs.browser !='' }}
     runs-on: ${{ github.event.inputs.runner }}
     steps:
-    - run: echo ${{ github.event.inputs.runner }}
-  sendnote:
-    name: Send note
-    if: ${{ always() }}
-    needs: [auto, manual]
-    runs-on: windows-latest
-    steps:
-    - run: echo "sendnote test"
-     
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Execute test
+      id: execute-test-manual
+      uses: katalon-studio/katalon-studio-github-action@v3.0
+      with:
+          version: ${{ github.event.inputs.kreversion }}
+          projectPath: '${{ github.workspace }}'
+          args: '-noSplash -retry=0 -testSuitePath="Test Suites/Fast Test/${{ github.event.inputs.testsuite }}" -browserType= ${{ github.event.inputs.browser }} -executionProfile=${{ github.event.inputs.profile }} -apiKey= ${{ secrets.API_KEY }} -orgID=${{ secrets.ORG_ID }} -testOpsProjectId=${{ secrets.PROJECT_ID }} --config -webui.autoUpdateDrivers=true'         
+      env:
+       BROWSER: ${{ github.event.inputs.browser }}
